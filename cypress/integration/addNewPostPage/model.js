@@ -18,10 +18,20 @@ const pageModel = {
         jobTitleTxtBox: "//input[@placeholder='e.g. UI/UX Designer']",
         eligibilityYesBtn: "(//p[contains(@class, 'sc-gWXbKe')])[1]",
         executiveYesBtn: "(//p[contains(@class, 'sc-gWXbKe')])[3]",
-        jobDescriptionTxtBox: "//p[contains(@class, 'sc-cidDSM')]",
+        jobDescriptionTxtBox: "//textarea[@rows='4']",
         fullTimeBtn: "(//p[contains(@class, 'sc-gWXbKe')])[5]",
         calender: '//input[@placeholder="DD-MM-YYYY"]',
-        JanuaryTenth: "//div[@aria-label='Choose Tuesday, January 11th, 2022']",
+        JanuaryTenth: "//div[@aria-label='Choose Tuesday, January 25th, 2022']",
+        continueBtn: "#onboarding-continue-btn",
+        baseSalaryTxtBox: "//input[@placeholder='e.g. 4000']",
+        employeeEmailTxtBox: "//input[@placeholder='example@email.com']",
+        confirmCheckBox: ".sc-hGPBjI",
+        finishBtn: "#onboarding-finish-btn",
+        actionItems: "#sidebar-action-items-link > .sc-hUpaCq > .sc-gSQFLo",
+        firstMarkAsDoneBtn: "(//button[@id='action-items-mark-done-btn'])[1]",
+        nextPageBtn: ".rc-pagination-item-2 > a",
+        confirmationMessage: "(//h4[@class='sc-bvFjSx duSioO'])[1]/span",
+        DoneLabel: "(//span[@data-is-completed='true'])[1]",
     },
 
     actions: {
@@ -32,7 +42,8 @@ const pageModel = {
         clickLogin: () => cy.get(pageModel.selectors.loginBtn).click(),
         clickAddEmployee: () => cy.get(pageModel.selectors.addEmployeeBtn).click(),
         clickCreateNew: () => cy.get(pageModel.selectors.createNewBtn).click(),
-        clickSelectCountry: () => cy.get(pageModel.selectors.selectCountry).click().type("Egypt").wait(2000),
+        clickSelectCountry: () => cy.get(pageModel.selectors.selectCountry)
+            .click().type(employeeData.country).wait(2000),
         clickSelectEgypt: () => cy.get(pageModel.selectors.selectEgypt).type("{enter}"),
         clickGetStarted: () => cy.get(pageModel.selectors.getStartedBtn).click(),
         FillEmployeeDetails: () => {
@@ -41,16 +52,27 @@ const pageModel = {
             cy.xpath(pageModel.selectors.jobTitleTxtBox).type(employeeData.jobTitle);
             cy.xpath(pageModel.selectors.eligibilityYesBtn).click();
             cy.xpath(pageModel.selectors.executiveYesBtn).click();
-            cy.xpath(pageModel.selectors.jobTitleTxtBox).type(employeeData.jobDescription);
+            cy.xpath(pageModel.selectors.jobDescriptionTxtBox).type(employeeData.jobDescription);
             cy.xpath(pageModel.selectors.fullTimeBtn).click();
             cy.xpath(pageModel.selectors.calender).click();
             cy.xpath(pageModel.selectors.JanuaryTenth).click();
-
         },
-
+        enterSalary: () => cy.xpath(pageModel.selectors.baseSalaryTxtBox).type(employeeData.salary),
+        clickContinue: () => cy.get(pageModel.selectors.continueBtn).click().wait(2000),
+        scrollDown: () => cy.window().scrollTo("bottom", {ensureScrollable: false}),
+        enterEmployeeEmail: () => cy.xpath(pageModel.selectors.employeeEmailTxtBox).type(employeeData.email),
+        clickConfirm: () => cy.get(pageModel.selectors.confirmCheckBox).click(),
+        clickFinish: () => cy.get(pageModel.selectors.finishBtn).click(),
+        clickActionItems: () => cy.get(pageModel.selectors.actionItems).click().wait(3000),
+        clickMarkAsDone: () => cy.xpath(pageModel.selectors.firstMarkAsDoneBtn).click(),
+        navigateToNextPage: () => cy.get(pageModel.selectors.nextPageBtn).click().wait(6000),
     },
 
     assertions: {
+        assertConfirmationMessage: () => cy.get('section[data-is-completed="true"] > [style="max-width: 75%;"] > .sc-bjeSbO > [style="max-width: 500px; overflow-wrap: break-word;"]').should('be.visible'),
+        assertDone: () => cy.xpath(pageModel.selectors.DoneLabel).should('be.visible'),
+
+
     },
 };
 
