@@ -1,0 +1,33 @@
+{
+  "name": "test-automation-task",
+  "version": "1.0.0",
+  "description": "test automation practice project using cypress",
+  "main": "index.js",
+  "dependencies": {
+    "cypress": "^9.0.0"
+  },
+  "scripts": {
+    "cypress:open": "cypress open",
+    "cypress:headless": "cypress run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mohamedatef2020/test-automation-task"
+  },
+  "keywords": [
+    "cypress",
+    "test",
+    "automation",
+    "npm"
+  ],
+  "author": "Mohamed Atef",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mohamedatef2020/test-automation-task/issues"
+  },
+  "homepage": "https://github.com/mohamedatef2020/test-automation-task#readme",
+  "devDependencies": {
+    "cypress": "^9.0.0",
+    "cypress-xpath": "^1.6.2"
+  }
+}

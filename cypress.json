@@ -1,0 +1,13 @@
+{
+    "baseUrl": "https://beta.workmotion.com",
+    "integrationFolder": "cypress/integration",
+    "ignoreTestFiles": "**model.js",
+    "screenshotsFolder": "cypress/screenshots",
+    "videosFolder": "cypress/videos",
+    "viewportWidth": 1515,
+    "viewportHeight": 750,
+    "retries": {
+        "runMode": 2,
+        "openMode": 1
+      }
+}
