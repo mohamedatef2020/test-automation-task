@@ -45,7 +45,6 @@ describe('Add a new employee', () => {
       cy.wait("@loadNextPage");
 
       pageModel.actions.clickMarkAsDone();
-      pageModel.actions.navigateToNextPage();
       cy.wait("@loadNextPage");
 
       pageModel.assertions.assertConfirmationMessage();

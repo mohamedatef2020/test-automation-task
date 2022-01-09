@@ -12,6 +12,8 @@ npm install
 npm run cypress:open
 ```
 
+Then choose the spec file to run
+
 or use:
 ```
 npx cypress open

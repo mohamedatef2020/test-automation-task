@@ -30,7 +30,7 @@ const pageModel = {
         actionItems: "#sidebar-action-items-link > .sc-hUpaCq > .sc-gSQFLo",
         firstMarkAsDoneBtn: "(//button[@id='action-items-mark-done-btn'])[1]",
         nextPageBtn: ".rc-pagination-item-2 > a",
-        confirmationMessage: "(//h4[@class='sc-bvFjSx duSioO'])[1]/span",
+        confirmationMessage: 'section[data-is-completed="true"] > [style="max-width: 75%;"] > .sc-bjeSbO > [style="max-width: 500px; overflow-wrap: break-word;"]',
         DoneLabel: "(//span[@data-is-completed='true'])[1]",
     },
 
@@ -63,16 +63,13 @@ const pageModel = {
         enterEmployeeEmail: () => cy.xpath(pageModel.selectors.employeeEmailTxtBox).type(employeeData.email),
         clickConfirm: () => cy.get(pageModel.selectors.confirmCheckBox).click(),
         clickFinish: () => cy.get(pageModel.selectors.finishBtn).click(),
-        clickActionItems: () => cy.get(pageModel.selectors.actionItems).click().wait(3000),
-        clickMarkAsDone: () => cy.xpath(pageModel.selectors.firstMarkAsDoneBtn).click(),
-        navigateToNextPage: () => cy.get(pageModel.selectors.nextPageBtn).click().wait(6000),
+        clickActionItems: () => cy.get(pageModel.selectors.actionItems).click().wait(5000),
+        clickMarkAsDone: () => cy.xpath(pageModel.selectors.firstMarkAsDoneBtn).click().wait(5000),
     },
 
     assertions: {
-        assertConfirmationMessage: () => cy.get('section[data-is-completed="true"] > [style="max-width: 75%;"] > .sc-bjeSbO > [style="max-width: 500px; overflow-wrap: break-word;"]').should('be.visible'),
+        assertConfirmationMessage: () => cy.get(pageModel.selectors.confirmationMessage).should('be.visible'),
         assertDone: () => cy.xpath(pageModel.selectors.DoneLabel).should('be.visible'),
-
-
     },
 };
 
